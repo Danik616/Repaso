@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev":"nodemon ./index.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
     "url": "https://github.com/Danik616/Repaso/issues"
   },
   "homepage": "https://github.com/Danik616/Repaso#readme",
-  "dependencies": {
-    "jsonwebtoken": "^9.0.0"
+  "devDependencies": {
+    "nodemon": "2.0.22"
   }
 }
