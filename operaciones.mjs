@@ -10,4 +10,4 @@ const resta =(numA, numB) =>{
     return numA * numB
 }
 
-module.exports = {suma, resta, multiplicacion}
+export {suma, resta, multiplicacion}
