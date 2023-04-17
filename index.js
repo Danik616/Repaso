@@ -1,3 +1,3 @@
-import {suma} from './operaciones.js'
+// como en ESM no tenemos ni __filename ni __dirname, nosotros usaremos 
 
-console.log(suma(3,2))
+console.log(import.meta.url)
