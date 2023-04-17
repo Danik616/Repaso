@@ -1,5 +1,3 @@
-const operaciones= require('./operaciones')
-const usuarios= require('./users.json')
+import {suma} from './operaciones.js'
 
-console.log(operaciones)
-console.log(usuarios)
+console.log(suma(3,2))
