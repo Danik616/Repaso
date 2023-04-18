@@ -12,15 +12,11 @@ expressApp.listen(PORT, ()=> console.log(`Servidor levantado en el puerto: ${POR
 expressApp.use(express.json())
 expressApp.use(express.text())
 
-expressApp.post("/cuenta", (req,res)=> {
-    console.log(req.body)
-    console.log(req.query)
-    res.send("Tu cuenta personal")
-})
+//Obtener los detalles de la cuenta
 
-expressApp.put("/producto", (req,res)=> {
-    console.log(req.body)
 
-    res.send()
-    
-})
+//Crear una nueva cuenta
+
+//Actualizar una cuenta
+
+//Eliminar una cuenta
