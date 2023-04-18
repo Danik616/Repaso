@@ -6,6 +6,12 @@ const expressApp= express();
 
 expressApp.listen(PORT, ()=> console.log(`Servidor levantado en el puerto: ${PORT}`))
 
+
+//Estos dos metodos en los que usamos json y text estan hechos para que el sistema pueda 
+//leer solo en esas dos entradas.
+expressApp.use(express.json())
+expressApp.use(express.text())
+
 expressApp.get("/cuenta", (req,res)=> {
     
     res.send("Tu cuenta personal")
@@ -13,10 +19,8 @@ expressApp.get("/cuenta", (req,res)=> {
 
 expressApp.get("/cuenta/:idcuenta", (req,res)=> {
     console.log(req.params.idcuenta)
-    //nosotros podemos enviarle status code si lo necesitamos
-    //como en este caso que le enviamos 401 porque no esta autorizado
-    res.status(401).send({
-        errorMessage: 'No autorizado'
-    })
+    console.log(req.body)
+
+    res.send()
     
 })
