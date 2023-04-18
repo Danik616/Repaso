@@ -1,24 +1,22 @@
 console.clear()
-import {createServer} from 'http';
+import express from 'express';
 
-const httpServer= createServer((req, res)=> {
-    //console.log(req.method)
-    //console.log(req.url)
-    //console.log(req.headers)
-    console.log("PETICION RECIBIDA")
+const PORT=3000
+const expressApp= express();
 
-    let data='';
-    let chunkIndex=0
-    req.on('data', (chunk) =>{
-        data +=chunk
-        chunkIndex++
-        console.log(chunkIndex)
-    })
-    req.on('end', () => {
-        res.end('Recibido')
-    })
+expressApp.listen(PORT, ()=> console.log(`Servidor levantado en el puerto: ${PORT}`))
 
+expressApp.get("/cuenta", (req,res)=> {
     
+    res.send("Tu cuenta personal")
 })
 
-httpServer.listen(3000)
+expressApp.get("/cuenta/:idcuenta", (req,res)=> {
+    console.log(req.params.idcuenta)
+    //nosotros podemos enviarle status code si lo necesitamos
+    //como en este caso que le enviamos 401 porque no esta autorizado
+    res.status(401).send({
+        errorMessage: 'No autorizado'
+    })
+    
+})
