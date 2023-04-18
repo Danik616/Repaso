@@ -1,2 +1,24 @@
-//Si nosotros queremos manejar de CJS a MJS toca hacer imports dinamicos
-import('./operaciones.mjs').then(({suma}) => console.log(suma(2,3)))
+console.clear()
+import {createServer} from 'http';
+
+const httpServer= createServer((req, res)=> {
+    //console.log(req.method)
+    //console.log(req.url)
+    //console.log(req.headers)
+    console.log("PETICION RECIBIDA")
+
+    let data='';
+    let chunkIndex=0
+    req.on('data', (chunk) =>{
+        data +=chunk
+        chunkIndex++
+        console.log(chunkIndex)
+    })
+    req.on('end', () => {
+        res.end('Recibido')
+    })
+
+    
+})
+
+httpServer.listen(3000)
