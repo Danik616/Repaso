@@ -24,3 +24,4 @@ expressApp.listen(PORT, ()=> console.log(`Servidor levantado en el puerto: ${POR
 //Estos dos metodos en los que usamos json y text estan hechos para que el sistema pueda 
 //leer solo en esas dos entradas.
 
+ 
