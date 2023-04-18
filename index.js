@@ -12,13 +12,13 @@ expressApp.listen(PORT, ()=> console.log(`Servidor levantado en el puerto: ${POR
 expressApp.use(express.json())
 expressApp.use(express.text())
 
-expressApp.get("/cuenta", (req,res)=> {
-    
+expressApp.post("/cuenta", (req,res)=> {
+    console.log(req.body)
+    console.log(req.query)
     res.send("Tu cuenta personal")
 })
 
-expressApp.get("/cuenta/:idcuenta", (req,res)=> {
-    console.log(req.params.idcuenta)
+expressApp.put("/producto", (req,res)=> {
     console.log(req.body)
 
     res.send()
