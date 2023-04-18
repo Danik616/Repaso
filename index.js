@@ -14,7 +14,6 @@ expressApp.use(express.text())
 
 //Obtener los detalles de la cuenta
 
-
 //Crear una nueva cuenta
 
 //Actualizar una cuenta
