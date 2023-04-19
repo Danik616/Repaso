@@ -20,11 +20,6 @@ authRouter.post("/autenticado", (req, res) => {
     } catch (error) {
         return res.sendStatus(401)
     }
-
-    
-
-    
-
 })
 //Endpoint autorizado a administradores
 authRouter.post("/autorizado", (req, res) => {
