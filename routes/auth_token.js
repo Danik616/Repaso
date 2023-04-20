@@ -5,7 +5,8 @@ import { USERS_BBDD } from "../bbdd.js";
 
 const authTokenRouter =Router()
 
-authTokenRouter.post("/login", async (req, res) => {
+authTokenRouter.post("/login",validateLoginDTO, async (req, res) => {
+    
     const {email, password} = req.body
 
     if(!email || !password) return res.sendStatus(400)
