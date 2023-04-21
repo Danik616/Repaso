@@ -1,27 +1,41 @@
-const DTO_PROPERTIES_NAMES=["email", "password"]
+import { Type } from "@sinclair/typebox"
+import addFormats from 'ajv-formats'
+import addErrors from 'ajv-errors'
+import Ajv from "ajv"
+
+const loginDTOSchema=Type.Object({
+    email: Type.String({
+        format: 'email',
+        errorMessage: {
+            type: 'El tipo debe ser un String',
+            format: 'Email debe contener un correo electronico valido'
+        }
+    }),
+    password: Type.String({
+        errorMessage: {
+            type: "El tipo de password debe de ser un String"
+        }
+    }),
+},
+{
+    additionalProperties: false
+})
 //se instala npm i ajv para la validacion del schema
 //se instala npm install @sinclair/typebox
-const loginDTOSchema= {
-    type: 'object',
-    properties: {
-        email: {type: 'string', format: 'email'},
-        password: {type: 'string'}
-    },
-    required: ['email', 'password'],
-    additionalProperties: false
-}
+const ajv=new Ajv({allErrors: true})
+addFormats(ajv, ['email']).addKeyword("kind").addKeyword("modifier")
+addErrors(ajv)
+
+const validate = ajv.compile(loginDTOSchema)
+
 
 const validateLoginDTO= (req, res, next) =>{
-    const loginDto= req.body
-     if(typeof loginDto !== 'object') res.status(400).send("El body tiene que venir en formato JSON")
-     const bodyPropertiesNames = Object.keys(loginDto)
-
-     const checkProperties = 
-     bodyPropertiesNames.length === DTO_PROPERTIES_NAMES.length && 
-     bodyPropertiesNames.every(bodyPropertiesName => 
-        DTO_PROPERTIES_NAMES.includes(bodyPropertiesName))
-
-    if(!checkProperties) res.status(400).send("El body debe de contener unicamente email y password")
+    const isDTOValid = validate(req.body)
+    // en una prueba anterior salia un error y es porque se me habia olvidado poner el return del if
+    // siempre en http si vamos a enviar un error por medio de un condicional hay que poner el return
+    if(!isDTOValid) return res.status(400).send(ajv.errorsText(validate.errors, {separator: "\n"}))
+    
+    next()
 }
 
 export default validateLoginDTO
